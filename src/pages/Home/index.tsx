@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Loader from '../../components/Loader';
 
 const Home = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <section>
-      <h1>Home</h1>
+      {loading && (
+        <Loader />
+      )}
+      {!loading && (
+        <h1>Home</h1>
+      )}
     </section>
   );
 };

@@ -12,7 +12,8 @@ html {
 
 body {
   color: $dark-color;
-  background: $light-bg;
+  color: $soft-color;
+  background: $dark-bg;
   transition: $transition-theme;
   font-family: $font-family-base;
 }
