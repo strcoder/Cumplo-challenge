@@ -4,19 +4,46 @@
   "description": "Desafío para Cumplo",
   "main": "index.js",
   "scripts": {
+    "build:frontend": "node esbuild",
+    "dev:frontend": "nodemon & npx servor public",
     "start:backend": "COUNTDOWN_SECONDS=30 CANDIDATES_COUNT=40 node server/index.js",
-    "start:frontend": "exit 0",
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+    "start:frontend": "node esbuild && npx servor public",
+    "start": "npm run start:backend & npm run start:frontend"
   },
   "author": "Cumplo",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.4",
     "body-parser": "^1.16.1",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
+    "esbuild": "^0.13.3",
+    "esbuild-plugin-sass": "^0.6.0",
     "express": "^4.14.1",
     "faker": "^5.5.3",
     "lodash": "^4.17.4",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^7.28.0",
+    "@types/react": "^17.0.26",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router": "^5.1.16",
+    "@types/react-router-dom": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.13",
+    "typescript": "^4.4.3"
   }
 }
