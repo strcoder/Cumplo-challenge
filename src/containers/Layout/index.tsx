@@ -1,7 +1,14 @@
 import React from 'react';
 
+import Appbar from '../../components/Appbar';
+
 const Layout = ({ children }: { children: React.ReactElement }) => {
-  return <>{children}</>;
+  return (
+    <>
+      <Appbar />
+      {children}
+    </>
+  );
 };
 
 export default Layout;

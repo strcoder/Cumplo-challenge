@@ -11,14 +11,14 @@ const Home = () => {
   }, []);
 
   return (
-    <section>
+    <>
       {loading && (
         <Loader />
       )}
-      {!loading && (
+      <section>
         <h1>Home</h1>
-      )}
-    </section>
+      </section>
+    </>
   );
 };
 

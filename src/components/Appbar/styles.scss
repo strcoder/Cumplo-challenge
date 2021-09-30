@@ -1,0 +1,23 @@
+@import '../../sass/utils/variables';
+
+.Appbar {
+  padding: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  background-color: darken($dark-bg, 2%);
+}
+
+.Appbar__logo {
+  width: 164px;
+}
+
+.Appbar__counter {
+  align-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .Appbar__logo {
+    width: 200px;
+  }
+}
