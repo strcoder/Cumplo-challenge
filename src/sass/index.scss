@@ -1,4 +1,9 @@
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-}
+@import './utils/variables';
+
+@import './mixins/shadow';
+@import './mixins/button';
+
+@import './utils/button';
+@import './utils/display';
+@import './utils/global';
+@import './utils/text';

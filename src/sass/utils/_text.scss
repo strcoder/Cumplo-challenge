@@ -1,0 +1,70 @@
+@each $name, $size in $font-headers {
+  @if (type-of($size) == 'number') {
+    #{$name} {
+      font-size: $size;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-headers;
+  font-weight: 500;
+  & .badge {
+    font-weight: 500;
+    font-size: $font-size-xs;
+  }
+}
+
+p {
+  &.lead {
+    font-size: $font-size-lg;
+  }
+  & mark {
+    border-radius: $border-radius-sm;
+    background-color: rgba($primary-color, 0.2);
+  }
+}
+
+.single-line {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.reading-text {
+  white-space: pre-line;
+}
+
+.txt {
+  &-xxl { font-size: $font-size-xxl; }
+  &-xl { font-size: $font-size-xl; }
+  &-lg { font-size: $font-size-lg; }
+  &-md { font-size: $font-size-md; }
+  &-sm { font-size: $font-size-sm; }
+  &-xs { font-size: $font-size-xs; }
+  &-left { text-align: left; }
+  &-right { text-align: right; }
+  &-center { text-align: center; }
+  &-bold { font-weight: $font-weight-bold; }
+  &-light { font-weight: $font-weight-light; }
+  &-normal { font-weight: $font-weight-normal; }
+  &-bolder { font-weight: $font-weight-bolder; }
+  &-lowercase { text-transform: lowercase; }
+  &-uppercase { text-transform: uppercase; }
+  &-capitalize { text-transform: capitalize; }
+}
+
+@media screen and (min-width: 1024px) {
+  @each $name, $size in $font-desk-headers {
+    @if (type-of($size) == 'number') {
+      #{$name} {
+        font-size: $size;
+      }
+    }
+  }
+}
