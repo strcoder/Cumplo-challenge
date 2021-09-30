@@ -1,5 +1,6 @@
-const _ = require("lodash");
+const _ = require('lodash');
 const faker = require('faker');
+
 const __Candidates = {};
 
 module.exports = {
@@ -7,8 +8,8 @@ module.exports = {
   all: removeSensitiveAttributes(getAll),
   create: removeSensitiveAttributes(create),
   vote: removeSensitiveAttributes(vote),
-  bootstrap: bootstrap,
-  exists: exists,
+  bootstrap,
+  exists,
 };
 
 function exists(id) {
@@ -21,40 +22,56 @@ function genId() {
 
 function removeAttribute(key) {
   return function (o) {
-    return {...o, [key]: undefined};
-  }
+    return { ...o, [key]: undefined };
+  };
 }
 
 function removeSensitiveAttributes(func) {
-  return function(...args) {
+  return function (...args) {
     const candidates = func(...args);
     // Is a collection
     if (Array.isArray(candidates)) {
-      return _.map(candidates, removeAttribute("lastVoteOn"));
+      return _.map(candidates, removeAttribute('lastVoteOn'));
     }
     // Is a single element
-    return removeAttribute("lastVoteOn")(candidates)
-  }
+    return removeAttribute('lastVoteOn')(candidates);
+  };
 }
 
 function getMostVoted() {
   const candidates = _.map(__Candidates, _.identity);
-  const mostVotes = _.maxBy(candidates, function(candidate) { return candidate.votes; }).votes;
+  const mostVotes = _.maxBy(candidates, (candidate) => {
+    return candidate.votes;
+  }).votes;
   if (mostVotes) {
-    const mostVotedCandidates = _.filter(candidates, function(candidate) { return candidate.votes === mostVotes });
-    return _.maxBy(mostVotedCandidates, function(candidate) { return candidate.lastVoteOn; });
+    const mostVotedCandidates = _.filter(candidates, (candidate) => {
+      return candidate.votes === mostVotes;
+    });
+    return _.maxBy(mostVotedCandidates, (candidate) => {
+      return candidate.lastVoteOn;
+    });
   }
   return [];
 }
 
-function getAll(order = "desc") {
+function getAll(order = 'desc') {
   const candidates = _.map(__Candidates, _.identity);
-  return _.sortBy(candidates, [function(candidate) { return candidate.votes * (order === "desc" ? -1 : 1); }]);
+  return _.sortBy(candidates, [
+    function (candidate) {
+      return candidate.votes * (order === 'desc' ? -1 : 1);
+    },
+  ]);
 }
 
 function create(name, store) {
   const id = genId();
-  __Candidates[id] = {id: id, name: name, store: store, votes: 0, lastVoteOn: null};
+  __Candidates[id] = {
+    id,
+    name,
+    store,
+    votes: 0,
+    lastVoteOn: null,
+  };
   return __Candidates[id];
 }
 
@@ -62,11 +79,10 @@ function vote(id) {
   __Candidates[id].votes = __Candidates[id].votes + 1;
   __Candidates[id].lastVoteOn = new Date();
   return __Candidates[id];
-} 
+}
 
 function bootstrap(entries) {
-  for(let i = 0; i < entries; i++) {
+  for (let i = 0; i < entries; i++) {
     create(faker.name.findName(), faker.company.companyName());
   }
 }
-
