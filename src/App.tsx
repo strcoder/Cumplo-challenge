@@ -6,6 +6,8 @@ import NotFound from './pages/NotFound';
 import Layout from './containers/Layout';
 import { useStateValue } from './context';
 import { getCandidates, getCountdown } from './context/actions';
+import Vote from './pages/Vote';
+import RegisteredVote from './pages/RegisteredVote';
 
 const App = () => {
   const { dispatch } = useStateValue();
@@ -20,6 +22,8 @@ const App = () => {
       <Layout>
         <Switch>
           <Route exact path={['/', '/home']} component={Home} />
+          <Route exact path='/candidate/vote/:id' component={Vote} />
+          <Route exact path='/vote/registered' component={RegisteredVote} />
           <Route exact path='/result' component={Result} />
           <Route component={NotFound} />
         </Switch>

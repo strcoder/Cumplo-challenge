@@ -6,7 +6,7 @@
   "scripts": {
     "build:frontend": "node esbuild",
     "dev:frontend": "nodemon & npx servor public",
-    "start:backend": "COUNTDOWN_SECONDS=30 CANDIDATES_COUNT=40 node server/index.js",
+    "start:backend": "COUNTDOWN_SECONDS=300 CANDIDATES_COUNT=40 node server/index.js",
     "start:frontend": "node esbuild && npx servor public",
     "start": "npm run start:backend & npm run start:frontend",
     "start:dev": "npm run start:backend & npm run dev:frontend"

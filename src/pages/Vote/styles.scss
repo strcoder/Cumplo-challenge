@@ -1,0 +1,25 @@
+@import '../../sass/utils/variables';
+
+.Vote {
+  gap: 12px;
+  padding: 50px 25px;
+  align-content: center;
+  justify-content: center;
+}
+
+.Vote__body {
+  gap: 4px;
+  justify-items: center;
+  & p {
+    font-size: 6rem;
+  }
+}
+
+.Vote__footer {
+  gap: 4px;
+  padding-top: 100px;
+  & p:nth-child(2) {
+    color: $accent-color;
+    font-size: $font-size-xl;
+  }
+}

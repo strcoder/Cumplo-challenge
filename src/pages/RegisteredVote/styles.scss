@@ -1,0 +1,25 @@
+@import '../../sass/utils/variables';
+
+.RegisteredVote {
+  gap: 12px;
+  padding: 50px 25px;
+  align-content: center;
+  justify-content: center;
+  & p:nth-child(1) {
+    font-size: $font-size-xl;
+  }
+  & p:nth-child(2) {
+    font-size: $font-size-xxl;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .RegisteredVote {
+    & p:nth-child(1) {
+      font-size: $desk-font-size-xl;
+    }
+    & p:nth-child(2) {
+      font-size: $desk-font-size-xxl;
+    }
+  }
+}
