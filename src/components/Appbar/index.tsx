@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
 import useTimer from '../../hooks/useTimer';
@@ -28,13 +29,15 @@ const Appbar = () => {
 
   return (
     <header className='Appbar'>
-      <figure className='Appbar__logo'>
-        <img
-          src='/assets/logocumplo-vertical.png'
-          alt='Cumplo logo'
-          loading='lazy'
-        />
-      </figure>
+      <Link to='/'>
+        <figure className='Appbar__logo'>
+          <img
+            src='/assets/logocumplo-vertical.png'
+            alt='Cumplo logo'
+            loading='lazy'
+          />
+        </figure>
+      </Link>
       <div className='Appbar__counter'>
         <p>{getTimer()}</p>
       </div>

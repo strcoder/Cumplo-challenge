@@ -6,6 +6,9 @@
   align-content: center;
   justify-content: space-around;
   background-color: darken($dark-bg, 2%);
+  & > a {
+    padding: 0;
+  }
 }
 
 .Appbar__logo {
