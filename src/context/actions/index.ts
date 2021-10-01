@@ -49,3 +49,25 @@ export const getCountdown = async ({ dispatch }) => {
   }
 };
 
+export const voteForCandidate = async ({ dispatch, id, candidates }) => {
+  try {
+    const candidate = await axios({
+      url: `${API}/candidates/vote`,
+      method: 'POST',
+      data: { id },
+    }).then(({ data }) => {
+      return data;
+    });
+    const newList = candidates.map((item) => {
+      if (item.id === id) {
+        return candidate;
+      }
+      return item;
+    });
+    dispatch(setCandidates(newList));
+    return candidate;
+  } catch (error) {
+    dispatch(setError(error));
+    return null;
+  }
+};

@@ -1,5 +1,6 @@
-import axios from 'axios';
 import React from 'react';
+import { useStateValue } from '../../context';
+import { voteForCandidate } from '../../context/actions';
 import './styles.scss';
 
 type ProfileCardProps = {
@@ -10,16 +11,10 @@ type ProfileCardProps = {
 }
 
 const ProfileCard = ({ id, name, store, votes }: ProfileCardProps) => {
-  const API = process.env.API_URL;
+  const { candidates, countdown, dispatch } = useStateValue();
 
   const handleVote = () => {
-    axios({
-      url: `${API}/api/v1/candidates/vote`,
-      method: 'POST',
-      data: { id },
-    }).then(({ data }) => {
-      console.log(data);
-    });
+    voteForCandidate({ id, candidates, dispatch });
   };
 
   return (
@@ -27,6 +22,7 @@ const ProfileCard = ({ id, name, store, votes }: ProfileCardProps) => {
       <button
         type='button'
         onClick={handleVote}
+        disabled={countdown <= 0}
         className='ProfileCard--vote btn btn-sm'
       >
         Votar
