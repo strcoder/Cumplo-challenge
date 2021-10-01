@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:cy": "cypress open",
     "build:frontend": "node esbuild",
     "dev:frontend": "nodemon & npx servor public",
     "start:backend": "COUNTDOWN_SECONDS=300 CANDIDATES_COUNT=40 node server/index.js",
@@ -19,6 +20,7 @@
     "body-parser": "^1.16.1",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
+    "cypress": "^8.5.0",
     "dotenv": "^10.0.0",
     "esbuild": "^0.13.3",
     "esbuild-plugin-sass": "^0.6.0",
