@@ -1,46 +1,70 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+
+import { useHistory } from 'react-router';
 import Loader from '../../components/Loader';
-import Candidate from '../../utils/interface/Candidates';
+import { useStateValue } from '../../context';
+import { getWinner } from '../../context/actions';
 import './styles.scss';
 
 const Result = () => {
-  const [winner, setWinner] = useState<Candidate>();
+  const history = useHistory();
+  const { countdown, dispatch, winner } = useStateValue();
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios({
-      url: 'http://localhost:3001/api/v1/candidates/winner',
-      method: 'GET',
-    }).then(({ data }) => {
-      setWinner(data);
-    });
-  }, []);
+    if (countdown > 0) {
+      history.replace('/');
+    }
+  }, [countdown]);
+
+  useEffect(() => {
+    setError(false);
+    setLoading(true);
+    if (countdown === 0) {
+      getWinner({ dispatch }).then((data) => {
+        if (data) {
+          setError(false);
+        } else {
+          setError(true);
+        }
+        setLoading(false);
+      });
+    }
+  }, [countdown]);
 
   return (
     <>
-      {!winner && (
+      {loading && (
         <Loader />
       )}
-      <section className='Result'>
-        <div className='Result__header'>
-          <p>El empleado del mes es</p>
-          <h1>{winner?.name}</h1>
-          <small>{winner?.store}</small>
-        </div>
-        <figure className='Result__image'>
-          <img src='/assets/winner.svg' alt='' />
-        </figure>
-        <div className='Result__footer'>
-          <p>
-            con
-            {' '}
-            <strong>{winner?.votes}</strong>
-            {' '}
-            votos
-          </p>
-          <p><strong>¡Felicidades!</strong></p>
-        </div>
-      </section>
+      {error && (
+        <section className='Result slideInDown'>
+          <h1>No hubo ningun ganador</h1>
+        </section>
+      )}
+      {winner && !loading && !error && (
+        <section className='Result slideInDown'>
+          <div className='Result__header'>
+            <p>El empleado del mes es</p>
+            <h1>{winner?.name}</h1>
+            <small>{winner?.store}</small>
+          </div>
+          <figure className='Result__image'>
+            <img src='/assets/winner.svg' alt='' />
+          </figure>
+          <div className='Result__footer'>
+            <p>
+              con
+              {' '}
+              <strong>{winner?.votes}</strong>
+              {' '}
+              votos
+            </p>
+            <p><strong>¡Felicidades!</strong></p>
+          </div>
+        </section>
+      )}
     </>
   );
 };

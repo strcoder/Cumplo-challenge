@@ -17,6 +17,11 @@ export const setCountdown = (countdown: number) => ({
   countdown,
 });
 
+export const setWinner = (winner: number) => ({
+  type: 'SET_WINNER',
+  winner,
+});
+
 export const getCandidates = async ({ dispatch }) => {
   try {
     const candidates = await axios({
@@ -66,6 +71,25 @@ export const voteForCandidate = async ({ dispatch, id, candidates }) => {
     });
     dispatch(setCandidates(newList));
     return candidate;
+  } catch (error) {
+    dispatch(setError(error));
+    return null;
+  }
+};
+
+export const getWinner = async ({ dispatch }) => {
+  try {
+    const winner = await axios({
+      url: `${API}/candidates/winner`,
+      method: 'GET',
+    }).then(({ data }) => {
+      if (!Array.isArray(data)) {
+        return data;
+      }
+      return null;
+    });
+    dispatch(setWinner(winner));
+    return winner;
   } catch (error) {
     dispatch(setError(error));
     return null;

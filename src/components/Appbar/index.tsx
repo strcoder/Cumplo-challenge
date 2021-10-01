@@ -3,20 +3,25 @@ import { useHistory } from 'react-router';
 
 import useTimer from '../../hooks/useTimer';
 import { useStateValue } from '../../context';
+import { setCountdown } from '../../context/actions';
 import './styles.scss';
 
 const Appbar = () => {
   const history = useHistory();
-  const { countdown } = useStateValue();
+  const { countdown, dispatch } = useStateValue();
   const { setTimer, getTimer, setActiveTimer, finishTimer } = useTimer();
 
   useEffect(() => {
+    if (countdown === 0) {
+      history.replace('/result');
+    }
     setTimer({ time: countdown });
     setActiveTimer(true);
   }, [countdown]);
 
   useEffect(() => {
     if (finishTimer) {
+      dispatch(setCountdown(0));
       history.replace('/result');
     }
   }, [finishTimer]);

@@ -5,6 +5,11 @@ const reducer = (state, payload) => {
         ...state,
         candidates: payload.candidates,
       };
+    case 'SET_WINNER':
+      return {
+        ...state,
+        winner: payload.winner,
+      };
     case 'SET_COUNTDOWN':
       return {
         ...state,

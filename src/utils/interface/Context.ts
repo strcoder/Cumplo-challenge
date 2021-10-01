@@ -5,4 +5,5 @@ export interface ContextInterface {
   dispatch: React.Dispatch<any>;
   candidates?: Candidate[],
   countdown?: number,
+  winner?: Candidate,
 }
