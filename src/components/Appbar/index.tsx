@@ -1,21 +1,17 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
+
 import useTimer from '../../hooks/useTimer';
+import { useStateValue } from '../../context';
 import './styles.scss';
 
 const Appbar = () => {
-  const API = process.env.API_URL;
+  const { countdown } = useStateValue();
   const { setTimer, getTimer, setActiveTimer } = useTimer();
 
   useEffect(() => {
-    axios({
-      url: `${API}/api/v1/countdown`,
-      method: 'GET',
-    }).then(({ data }) => {
-      setTimer({ time: data.secondsLeft });
-      setActiveTimer(true);
-    });
-  }, []);
+    setTimer({ time: countdown });
+    setActiveTimer(true);
+  }, [countdown]);
 
   return (
     <header className='Appbar'>

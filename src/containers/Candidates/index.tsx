@@ -1,29 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ProfileCard from '../../components/ProfileCard';
-
-type CandidatesProps = {
-  id: string;
-  name: string;
-  store: string;
-  votes: number;
-};
+import { useStateValue } from '../../context';
 
 const Candidates = () => {
-  const API = process.env.API_URL;
-  const [candidates, setCandidates] = useState<CandidatesProps[]>();
-
-  useEffect(() => {
-    axios({
-      url: `${API}/api/v1/candidates`,
-      method: 'GET',
-    }).then(({ data }) => {
-      setCandidates(data);
-    }).catch(() => {
-      setCandidates([]);
-    });
-  }, []);
+  const { candidates } = useStateValue();
 
   return (
     <ul className='Home__body--list'>
