@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
 import Loader from '../../components/Loader';
+import Candidates from '../../containers/Candidates';
+import './styles.scss';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -15,8 +18,14 @@ const Home = () => {
       {loading && (
         <Loader />
       )}
-      <section>
-        <h1>Home</h1>
+      <section className='Home'>
+        <div className='Home__title'>
+          <h1>El empleado del mes</h1>
+        </div>
+        <div className='Home__body'>
+          <p>Los nominados son</p>
+          <Candidates />
+        </div>
       </section>
     </>
   );

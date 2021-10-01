@@ -1,0 +1,17 @@
+@import '../../sass/utils/variables';
+
+.Home__title {
+  padding: 10px;
+  justify-items: center;
+  background-color: darken($dark-bg, 2%);
+}
+
+.Home__body {
+  gap: 25px;
+  padding: 20px 0;
+  justify-items: center;
+}
+
+.Home__body--list {
+  gap: 10px;
+}

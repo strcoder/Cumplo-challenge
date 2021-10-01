@@ -1,0 +1,26 @@
+@import '../../sass/utils/variables';
+
+.ProfileCard {
+  gap: 20px;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: auto 1fr auto;
+}
+
+.ProfileCard__info {
+  gap: 4px;
+  justify-self: flex-start;
+  & p:nth-child(2) {
+    color: $gray-400;
+    font-size: $font-size-sm;
+  }
+}
+
+.ProfileCard--count {
+  & p {
+    color: $accent-color;
+    font-size: $font-size-xxl;
+  }
+}

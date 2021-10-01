@@ -8,7 +8,8 @@
     "dev:frontend": "nodemon & npx servor public",
     "start:backend": "COUNTDOWN_SECONDS=30 CANDIDATES_COUNT=40 node server/index.js",
     "start:frontend": "node esbuild && npx servor public",
-    "start": "npm run start:backend & npm run start:frontend"
+    "start": "npm run start:backend & npm run start:frontend",
+    "start:dev": "npm run start:backend & npm run dev:frontend"
   },
   "author": "Cumplo",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "body-parser": "^1.16.1",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "esbuild": "^0.13.3",
     "esbuild-plugin-sass": "^0.6.0",
     "express": "^4.14.1",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^7.28.0",
+    "@types/node": "^16.10.2",
     "@types/react": "^17.0.26",
     "@types/react-dom": "^17.0.9",
     "@types/react-router": "^5.1.16",
