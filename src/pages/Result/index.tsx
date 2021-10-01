@@ -19,6 +19,11 @@ const Result = () => {
   }, [countdown]);
 
   useEffect(() => {
+    if (winner) {
+      setError(false);
+      setLoading(false);
+      return;
+    }
     setError(false);
     setLoading(true);
     if (countdown === 0) {

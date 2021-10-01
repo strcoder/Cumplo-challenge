@@ -37,10 +37,10 @@ const Vote = () => {
 
   return (
     <section className='Vote slideInRight'>
-      {error && (
+      {(error || !candidate) && (
         <p><strong>¡Ha ocurrido un error!</strong></p>
       )}
-      {!error && (
+      {!error && candidate && (
         <>
           <div className='Vote__body'>
             <p><strong>+1</strong></p>
