@@ -1,17 +1,25 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 import useTimer from '../../hooks/useTimer';
 import { useStateValue } from '../../context';
 import './styles.scss';
 
 const Appbar = () => {
+  const history = useHistory();
   const { countdown } = useStateValue();
-  const { setTimer, getTimer, setActiveTimer } = useTimer();
+  const { setTimer, getTimer, setActiveTimer, finishTimer } = useTimer();
 
   useEffect(() => {
     setTimer({ time: countdown });
     setActiveTimer(true);
   }, [countdown]);
+
+  useEffect(() => {
+    if (finishTimer) {
+      history.replace('/result');
+    }
+  }, [finishTimer]);
 
   return (
     <header className='Appbar'>

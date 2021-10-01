@@ -36,6 +36,16 @@ button, a {
   @include buttonOutline();
 }
 
+.btn-disable {
+  color: $white;
+  cursor: not-allowed;
+  background-color: $disable-color;
+  &:hover, &:active, &:focus {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
 .btn {
   &-sm {
     padding: 8px 12px;

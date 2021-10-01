@@ -1,0 +1,30 @@
+@import '../../sass/utils/variables';
+
+.Result {
+  gap: 25px;
+  padding: 25px;
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.Result__header {
+  gap: 4px;
+  text-align: center;
+  justify-items: center;
+}
+
+.Result__image {
+  max-width: 400px;
+}
+
+.Result__footer {
+  gap: 8px;
+  text-align: center;
+  & p:nth-child(1) {
+    font-size: $font-size-lg;
+  }
+  & p:nth-child(2) {
+    font-size: $font-size-xxl;
+  }
+}
