@@ -30,6 +30,7 @@ const Candidates = () => {
       {candidates?.map((item) => (
         <li key={item.id}>
           <ProfileCard
+            id={item.id}
             name={item.name}
             store={item.store}
             votes={item.votes}

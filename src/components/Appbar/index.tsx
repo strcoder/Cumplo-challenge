@@ -12,7 +12,6 @@ const Appbar = () => {
       url: `${API}/api/v1/countdown`,
       method: 'GET',
     }).then(({ data }) => {
-      console.log(data);
       setTimer({ time: data.secondsLeft });
       setActiveTimer(true);
     });
